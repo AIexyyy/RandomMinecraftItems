@@ -1,6 +1,6 @@
-allow_items_default: 0
+allow_items_default: 1
 allow_items_april_fools: 0
 allow_items_edu: 0
-rolled_item: Cobweb
+rolled_item: Grass Block
 rolled_group: Default item
-uses_font: Minecraft RUS
+uses_font: Minecraft
