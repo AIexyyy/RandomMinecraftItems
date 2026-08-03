@@ -1,4 +1,6 @@
 from random import randint,choices
+from itertools import accumulate
+from bisect import bisect_right
 import sys,re,webbrowser
 from PySide6.QtWidgets import QApplication,QLabel,QWidget,QVBoxLayout,QMainWindow,QPushButton
 from PySide6.QtCore import Qt
@@ -83,22 +85,21 @@ def changeTechnicalSetting(line,newSetting):
     file=open("Technical Settings.txt","w"); file.write(result); file.close()
 def RandomMinecraftItemPosition(List1,List2,List3):
     settings=open("Technical Settings.txt").read().splitlines()
-    groups=["Default item","April Fools item","Education Edition item"]; ResultingList=[]
-    booleans=[bool(int(settings[0].split(": ")[1])),bool(int(settings[1].split(": ")[1])),bool(int(settings[2].split(": ")[1]))]
-    if booleans[0]: ResultingList.extend([(item, groups[0]) for item in List1])
-    if booleans[1]: ResultingList.extend([(item, groups[1]) for item in List2])
-    if booleans[2]: ResultingList.extend([(item, groups[2]) for item in List3])
+    groups=["Default item","April Fools item","Education Edition item"]
+    booleans=[bool(int(settings[0].split(": ")[1])),bool(int(settings[1].split(": ")[1])),bool(int(settings[2].split(": ")[1]))]; group=["Default","April Fools","Education Edition"]
+    ResultingList=List1*int(booleans[0])+List2*int(booleans[1])+List3*int(booleans[2]); Weight=([len(List1)] if booleans[0]>0 else [])+([len(List2)] if booleans[1]>0 else [])+([len(List3)] if booleans[2]>0 else [])
     if len(ResultingList)==0: rolled=(settings[3].split(": ")[1],settings[4].split(": ")[1])
-    else: position=ResultingList[randint(0,len(ResultingList)-1)]; rolled=(position[0].replace("\\,", ","),position[1])
+    else:
+        position=randint(0,len(ResultingList)-1)
+        if sum(booleans)==1: group=group[booleans.index(1)]
+        else: Weight=list(accumulate(Weight)); group=group[bisect_right(Weight,position)]
+        rolled=(ResultingList[position].replace("\\,", ","),group+" item")
     global ItemRolled,GroupRolled
     ItemRolled,GroupRolled=rolled
     global shadow_label_result,text_label_result,shadow_label_group,text_label_group
-    shadow_label_result.setText(ItemRolled)
-    text_label_result.setText(ItemRolled)
-    shadow_label_group.setText(GroupRolled)
-    text_label_group.setText(GroupRolled)
-    changeTechnicalSetting(3,ItemRolled)
-    changeTechnicalSetting(4,GroupRolled)
+    shadow_label_result.setText(ItemRolled); text_label_result.setText(ItemRolled)
+    shadow_label_group.setText(GroupRolled); text_label_group.setText(GroupRolled)
+    changeTechnicalSetting(3,ItemRolled); changeTechnicalSetting(4,GroupRolled)
     return None
 def UpdateViableAmount():
     settings=open("Technical Settings.txt").read().splitlines()
