@@ -117,7 +117,7 @@ def MinecraftWikiLink(Item,Group):
     elif wikipage=="???": wikipage="Unknown_Element"
     if wikipage[-10:]=="_Spawn_Egg": wikipage=wikipage[:-10]
     if wikipage=="Block_of_Coal" and Group=="April Fools item": wikipage+="_(April_Fools'_joke)"
-    if wikipage in ["Iron","Copper","Lead","Gold","Sulfur","Tin","Silver"] and Group=="Education Edition item": wikipage+="_(element)"
+    if wikipage in ["Iron","Copper","Lead","Gold","Sulfur","Tin","Silver"] and Group=="Education Edition item": wikipage="Element#"+wikipage
     if wikipage=="Water" and Group=="Education Edition item": wikipage+="_(compound)"
     webbrowser.open("https://minecraft.wiki/w/"+wikipage); return None;
 
