@@ -1,0 +1,6 @@
+allow_items_default: 0
+allow_items_april_fools: 0
+allow_items_edu: 0
+rolled_item: Cobweb
+rolled_group: Default item
+uses_font: Minecraft RUS
