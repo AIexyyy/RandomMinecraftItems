@@ -1,6 +1,5 @@
 from random import randint,choices
 import sys,re,webbrowser
-from pyperclip import copy,paste
 from PySide6.QtWidgets import QApplication,QLabel,QWidget,QVBoxLayout,QMainWindow,QPushButton
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QKeySequence,QShortcut,QPainter,QPixmap,QColor
