@@ -92,7 +92,11 @@ def RandomMinecraftItemPosition(List1,List2,List3):
     else:
         position=randint(0,len(ResultingList)-1)
         if sum(booleans)==1: group=group[booleans.index(1)]
-        else: Weight=list(accumulate(Weight)); group=group[bisect_right(Weight,position)]
+        else:
+            if booleans==[False,True,True]: group=["April Fools","Education Edition"]
+            if booleans==[True,False,True]: group=["Default","Education Edition"]
+            if booleans==[True,True,False]: group=["Default","April Fools"]
+            Weight=list(accumulate(Weight)); group=group[bisect_right(Weight,position)]
         rolled=(ResultingList[position].replace("\\,", ","),group+" item")
     global ItemRolled,GroupRolled
     ItemRolled,GroupRolled=rolled
