@@ -126,7 +126,7 @@ def MinecraftWikiLink(Item,Group):
     webbrowser.open("https://minecraft.wiki/w/"+wikipage); return None;
 
 Statuses=open("Technical Settings.txt").read().splitlines()
-Items=open("Sets of Items/Minecraft items viable for Guess or Die.txt").readline(); Items=Items[:-1].split(", ")
+Items=open("Sets of Items/Minecraft Default items.txt").readline(); Items=Items[:-1].split(", ")
 ItemsAF=open("Sets of Items/Minecraft April Fools items.txt").readline(); ItemsAF=re.split(r'(?<!\\), ', ItemsAF[:-1])
 ItemsEDU=open("Sets of Items/Minecraft Education Edition items.txt").readline(); ItemsEDU=ItemsEDU[:-1].split(", ")
 AvailableItemsAmount=len(Items*int(Statuses[0].split(': ')[1]) + ItemsAF*int(Statuses[1].split(': ')[1]) + ItemsEDU*int(Statuses[2].split(': ')[1]))
